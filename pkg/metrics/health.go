@@ -7,6 +7,13 @@ type HealthStatusData struct {
 	data map[string]interface{}
 }
 
+func GenerateHealthStatusData(_name string, _data map[string]interface{}) HealthStatusData{
+	return HealthStatusData{
+		name: _name,
+		data: _data,
+	}
+}
+
 type HealthStatus func() HealthStatusData
 
 func HealthCheck(router *gin.Engine, status... HealthStatus){
