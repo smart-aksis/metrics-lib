@@ -25,7 +25,7 @@ func HealthCheck(router *gin.Engine, status... HealthStatus){
 		basic:=make(map[string]interface{})
 		basic["status"]="UP"
 
-		result["Basic"]=basic
+		result["basic"]=basic
 		if status != nil {
 			for _, healthStatus := range status {
 				index:=healthStatus()
