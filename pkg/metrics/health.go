@@ -17,7 +17,13 @@ func GenerateHealthStatusData(_name string, _data map[string]interface{}) Health
 type HealthStatus func() HealthStatusData
 
 func HealthCheck(router *gin.Engine, status... HealthStatus){
+	router.Use(
+		gin.LoggerWithWriter(gin.DefaultWriter, "/health/check"),
+		gin.Recovery(),
+	)
+
 	health := router.Group("/health")
+
 	health.GET("check", func(context *gin.Context) {
 		var result map[string]interface{}
 		result = make(map[string]interface{})
